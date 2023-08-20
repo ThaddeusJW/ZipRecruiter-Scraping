@@ -37,8 +37,8 @@ for perk in perks:
     pay_list.append(pay.text.strip())
 
 jobs_dict = zip(company_list, job_list)
-# for k, v in jobs_dict:
-#     print(f"Company: {k}\nRole: {v}\n")
+for k, v in jobs_dict:
+    print(f"Company: {k}\nRole: {v}\n")
 
 
 class Positions:
