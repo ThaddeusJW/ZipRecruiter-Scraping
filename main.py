@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import pandas as pd
+import openpyxl
+
 
 url = 'https://www.ziprecruiter.com/jobs-search?'
 _search = 'support'
@@ -16,8 +19,6 @@ dr = webdriver.Chrome(options=options)
 dr.get(f"{url}search={_search}&location={_location}&radius={_radius}&days={_days}")
 
 bs = BeautifulSoup(dr.page_source, "html.parser")
-
-dr.close()
 
 companies = bs.find_all("a", {"class":"company_name"})
 jobs = bs.find_all("h2", {"class":"title"})
@@ -48,6 +49,28 @@ jobs_dict = zip(company_list, job_list)
 for k, v in jobs_dict:
     print(f"Company: {k}\nRole: {v}\n")
 
+# for url in url_list:
+#     dr.get(url)
+#     bs = BeautifulSoup(dr.page_source, "html.parser")
+#     print(f"URL: {url_list[0]}")
+#     job_descript = bs.find("div", {"class":"job_description"})
+#     print(job_descript.prettify())
+
+#     break
+
+dr.close()
+
+full_dict = { "jobs": job_list,
+             "companies": company_list,
+             "pay": pay_list,
+             "links": url_list,
+
+}
+
+df = pd.DataFrame(full_dict)
+print(df)
+
+df.to_excel('jobs.xlsx', sheet_name='ZipRecruiter')
 
 # class Positions:
 
