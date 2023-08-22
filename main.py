@@ -71,15 +71,3 @@ df = pd.DataFrame(full_dict)
 print(df)
 
 df.to_excel('jobs.xlsx', sheet_name='ZipRecruiter')
-
-# class Positions:
-
-#         def __init__(self, company, job, perks, duties):
-#              self.company = company
-#              self.job = job
-#              self.perks = perks
-#              self.duties = duties
-
-# job1 = Positions(company_list[0], job_list[0], pay_list[0])
-
-# print(job1.company)
